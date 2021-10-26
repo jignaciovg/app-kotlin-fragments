@@ -7,11 +7,20 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.vaqueiro.apphellow.R
+import com.vaqueiro.apphellow.databinding.ActivityHelloBinding
+import com.vaqueiro.apphellow.databinding.ActivityToolbarBinding
 
 class ToolbarActivity : AppCompatActivity() {
+
+    //IMPLEMENTACION DE BINDING
+    private lateinit var binding: ActivityToolbarBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
+
+        binding = ActivityToolbarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_fragment)
         //setSupportActionBar(toolbar)

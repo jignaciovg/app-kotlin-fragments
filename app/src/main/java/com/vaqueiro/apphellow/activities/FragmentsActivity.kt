@@ -8,13 +8,22 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.vaqueiro.apphellow.R
 import androidx.fragment.app.commit
+import com.vaqueiro.apphellow.databinding.ActivityFragmentsBinding
+import com.vaqueiro.apphellow.databinding.ActivityHelloBinding
 import com.vaqueiro.apphellow.fragments.FirstFragment
 import com.vaqueiro.apphellow.fragments.SecondFragment
 
 class FragmentsActivity : AppCompatActivity() {
+
+    //IMPLEMENTACION DE BINDING
+    private lateinit var binding: ActivityFragmentsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragments)
+
+        binding = ActivityFragmentsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_fragment)
         //setSupportActionBar(toolbar)

@@ -12,7 +12,7 @@ import com.vaqueiro.apphellow.databinding.FragmentFirstBinding
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
 
-    //private lateinit var btnFragment2: Button
+    //IMPLEMENTACION DE BINDING CON FRAGMENTS
     private var _binding:FragmentFirstBinding? = null
     private val binding get() = _binding!!
 

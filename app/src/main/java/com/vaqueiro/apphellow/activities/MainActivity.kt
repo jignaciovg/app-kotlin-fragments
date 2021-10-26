@@ -10,16 +10,20 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.vaqueiro.apphellow.R
+import com.vaqueiro.apphellow.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var btnSayHello: Button
+    //IMPLEMENTACION DE BINDING
+    private lateinit var binding: ActivityMainBinding
+
+    /*private lateinit var btnSayHello: Button
     private lateinit var btnSayHello2: Button
     private lateinit var btnShowToolbar: Button
     private lateinit var btnShowFragments: Button
     private lateinit var btnShowFragments2: Button
     private lateinit var txtLabel: TextView
-    private lateinit var editName: EditText
+    private lateinit var editName: EditText*/
     private val TAG = "TEST"
     private val TAG2 = "CICLO"
 
@@ -27,36 +31,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnSayHello = findViewById(R.id.btn_say_hello)
+        /*btnSayHello = findViewById(R.id.btn_say_hello)
         btnSayHello2 = findViewById(R.id.btn_say_hello2)
         btnShowToolbar = findViewById(R.id.btn_toolbar)
         btnShowFragments = findViewById(R.id.btn_fragments)
         btnShowFragments2 = findViewById(R.id.btnFragments2)
         txtLabel = findViewById(R.id.txt_label)
-        editName = findViewById(R.id.edit_name)
+        editName = findViewById(R.id.edit_name)*/
 
-        btnSayHello.setOnClickListener{
-            val name = editName.text.toString()
+        //IMPLEMENTACION DE VIEW_BINDING
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnSayHello.setOnClickListener{
+            val name = binding.editName.text.toString()
             sayHello(name)
         }
-        btnSayHello2.setOnClickListener{
-            val name = editName.text.toString()
+        binding.btnSayHello2.setOnClickListener{
+            val name = binding.editName.text.toString()
             var intent = Intent(this,HelloActivity::class.java)
             intent.putExtra("name",name)
             //startActivity(intent)
             startActivityForResult(intent,1)
         }
-        btnShowToolbar.setOnClickListener{
+        binding.btnToolbar.setOnClickListener{
             var intent = Intent(this,ToolbarActivity::class.java)
             startActivity(intent)
         }
 
-        btnShowFragments.setOnClickListener{
+        binding.btnFragments.setOnClickListener{
             var intent = Intent(this,FragmentsActivity::class.java)
             startActivity(intent)
         }
 
-        btnShowFragments2.setOnClickListener{
+        binding.btnFragments2.setOnClickListener{
             var intent = Intent(this,Fragments2Activity::class.java)
             startActivity(intent)
         }
@@ -109,6 +117,6 @@ class MainActivity : AppCompatActivity() {
 
     fun sayHello(name:String){
         var hello = getString(R.string.hello)
-        txtLabel.text = "Hola $name"
+        binding.txtLabel.text = "Hola $name"
     }
 }

@@ -7,12 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.os.bundleOf
+import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.vaqueiro.apphellow.R
+import com.vaqueiro.apphellow.databinding.FragmentFirstBinding
+import com.vaqueiro.apphellow.databinding.FragmentMainBinding
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    // TODO: Rename and change types of parameters
-    private lateinit var btnDetail:Button
+
+    //IMPLEMENTACION DE BINDING CON FRAGMENTS
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMainBinding.inflate(inflater,container,false)
+        return binding.root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,20 +36,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnDetail = view.findViewById(R.id.btn_fragment_detail)
-
         var nombre = "TOKEN VALIDO"
-
-        btnDetail.setOnClickListener{
-
-            /*findNavController().navigate(R.id.action_mainFragment_to_detailFragment, bundleOf(
-                "nombre" to nombre
-            ))*/
-
+        //IMPLEMENTACION DE BINDING
+        binding.btnFragmentDetail.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
             action.nombre = nombre
             findNavController().navigate(action)
+            }
         }
-
     }
-}
